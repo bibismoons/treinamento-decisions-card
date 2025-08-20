@@ -18,7 +18,7 @@ A quantidade de contas cadastradas é um KPI fundamental para medir o cresciment
 
 ```sql
 -- Escreva sua query aqui
-
+select count(distinct id_cliente) as "quantidade contas cadastradas" from decisionscard.t_cliente;
 
 ```
 
@@ -26,8 +26,7 @@ A quantidade de contas cadastradas é um KPI fundamental para medir o cresciment
 
 ## 📋 Critérios de Avaliação
 
-- [ ] Query executa sem erros
-- [ ] Conta todos os registros de clientes
-- [ ] Retorna apenas um número
-- [ ] Usa a tabela correta (t_cliente)
-
+- [x] Query executa sem erros
+- [x] Conta todos os registros de clientes
+- [x] Retorna apenas um número
+- [x] Usa a tabela correta (t_cliente)
