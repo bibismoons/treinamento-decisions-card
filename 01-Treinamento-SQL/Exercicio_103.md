@@ -17,8 +17,13 @@ Contas ativadas representam clientes que não apenas se cadastraram, mas efetiva
 ## ✍️ Sua Resposta
 
 ```sql
--- Escreva sua query aqui
 
+select count(distinct c.id_cliente) as "Quantidade de contas ativadas"
+    from decisionscard.t_cliente c
+        join decisionscard.t_venda v 
+            on c.id_cliente = v.id_cliente 
+                where c.fl_status_conta = 'A'
+                and v.fl_status_venda = 'A';
 
 ```
 
@@ -26,9 +31,9 @@ Contas ativadas representam clientes que não apenas se cadastraram, mas efetiva
 
 ## 📋 Critérios de Avaliação
 
-- [ ] Query executa sem erros
-- [ ] Filtra contas ativas
-- [ ] Verifica existência de vendas
-- [ ] Conta clientes únicos
-- [ ] JOIN entre clientes e vendas
+- [x] Query executa sem erros
+- [x] Filtra contas ativas
+- [x] Verifica existência de vendas
+- [x] Conta clientes únicos
+- [x] JOIN entre clientes e vendas
 
