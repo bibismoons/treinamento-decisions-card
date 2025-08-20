@@ -17,8 +17,9 @@ Contas ativas representam o potencial de receita da empresa. É um indicador imp
 ## ✍️ Sua Resposta
 
 ```sql
--- Escreva sua query aqui
 
+select count(fl_status_conta) from decisionscard.t_cliente
+    where fl_status_conta = 'A'; 
 
 ```
 
@@ -26,8 +27,8 @@ Contas ativas representam o potencial de receita da empresa. É um indicador imp
 
 ## 📋 Critérios de Avaliação
 
-- [ ] Query executa sem erros
-- [ ] Filtra apenas contas ativas
-- [ ] Retorna apenas um número
-- [ ] Usa o campo fl_status_conta corretamente
+- [x] Query executa sem erros
+- [x] Filtra apenas contas ativas
+- [x] Retorna apenas um número
+- [x] Usa o campo fl_status_conta corretamente
 
