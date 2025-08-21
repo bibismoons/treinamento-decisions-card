@@ -18,7 +18,7 @@ A quantidade de contas cadastradas é um KPI fundamental para medir o cresciment
 
 ```sql
 
-select count(distinct id_cliente) as "quantidade contas cadastradas" 
+select count(id_cliente) as "Quantidade de contas cadastradas" 
     from decisionscard.t_cliente;
 
 ```
