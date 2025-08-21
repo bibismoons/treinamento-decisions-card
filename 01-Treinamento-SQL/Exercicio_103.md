@@ -18,12 +18,21 @@ Contas ativadas representam clientes que não apenas se cadastraram, mas efetiva
 
 ```sql
 
+--Opção 1:
 select count(distinct c.id_cliente) as "Quantidade de contas ativadas"
-    from decisionscard.t_cliente c
-        join decisionscard.t_venda v 
+    from t_cliente c
+        join t_venda v 
             on c.id_cliente = v.id_cliente 
                 where c.fl_status_conta = 'A'
                 and v.fl_status_venda = 'A';
+
+-- Opção 2:
+select count(c.id_cliente) as "qtd d contas a"
+    from t_cliente c 
+        where id_cliente in 
+            (select distinct id_cliente from t_venda 
+            where fl_status_venda = 'A')
+        and c.fl_status_conta = 'A';
 
 ```
 
