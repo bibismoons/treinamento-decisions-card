@@ -33,7 +33,7 @@ select count(c.id_cliente) as "qtd d contas a"
             (select distinct id_cliente from t_venda 
             where fl_status_venda = 'A')
         and c.fl_status_conta = 'A';
-
+        
 ```
 
 ---
