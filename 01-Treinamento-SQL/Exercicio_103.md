@@ -27,13 +27,13 @@ select count(distinct c.id_cliente) as "Quantidade de contas ativadas"
                 and v.fl_status_venda = 'A';
 
 -- Opção 2:
-select count(c.id_cliente) as "qtd d contas a"
+select count(c.id_cliente) as "Quantidade de contas ativadas"
     from t_cliente c 
         where id_cliente in 
             (select distinct id_cliente from t_venda 
             where fl_status_venda = 'A')
         and c.fl_status_conta = 'A';
-        
+
 ```
 
 ---
