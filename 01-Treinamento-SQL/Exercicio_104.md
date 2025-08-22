@@ -63,7 +63,7 @@ ultima_compra as (
     where c.fl_status_conta = 'A'
     group by c.id_cliente
 )
-select count() as total_contas_sem_compras_90d_ou_mais
+select count() as "total de contas sem compras há +90d"
 from ultima_compra uc
 cross join parametros p
 where uc.dt_ultima_compra <= p.data_referencia - interval '90 days';
@@ -80,10 +80,10 @@ clientes_90d as (
     where c.fl_status_conta = 'A'
     and v.dt_venda between (p.data_referencia - interval '90 days') and p.data_referencia
 )
-select count() as total_clientes_compraram_ultimos_90d
+select count() as "total de contas sem compras há +90d"
 from clientes_90d;
 
-select count(*) as total_de_contas_sem_compras_ha_mais_de_90d
+select count(*) as "total de contas sem compras há +90d"
 from (
     select c.id_cliente,
            max(v.dt_venda) as ultima_venda
