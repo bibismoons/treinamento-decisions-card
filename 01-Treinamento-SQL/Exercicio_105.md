@@ -36,7 +36,6 @@ select
 from total_contas t
 cross join contas_bloqueadas cb;
 
-
 ```
 
 ---
