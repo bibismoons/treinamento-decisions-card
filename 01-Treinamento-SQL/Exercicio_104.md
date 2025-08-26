@@ -22,34 +22,6 @@ Como a base não é atualizada há muito tempo, use `(SELECT MAX(dt_venda) FROM 
 
 ```sql
 --Tentativa 1:
-select c.id_cliente as "total de contas sem compras há +90d"
-from t_cliente c
-    where id_cliente in (
-        select distinct id_cliente
-        from t_venda
-        where dt_venda <= (
-            select max(dt_venda) 
-            from t_venda
-        ) - interval '90 day'
-) 
-and c.fl_status_conta = 'A';
-
---Tentativa 2:
-select id_cliente
-from t_cliente
-    where fl_status_conta = 'A' 
-    and id_cliente not in (
-        select c.id_cliente
---             max(v.dt_venda)
-        from t_venda v,
-             t_cliente c
-        where v.id_cliente = c.id_cliente
-        and c.fl_status_conta = 'A'
-        and v.dt_venda >= (select max(dt_venda) - interval '90 day' from t_venda)
---      group by c.id_cliente
-    );
-
---Tentativa 3:
 with parametros as (
     select max(dt_venda) as data_referencia
     from t_venda
@@ -60,7 +32,6 @@ ultima_compra as (
         max(v.dt_venda) as dt_ultima_compra
     from t_cliente c
     join t_venda v on c.id_cliente = v.id_cliente
-    where c.fl_status_conta = 'A'
     group by c.id_cliente
 )
 select count() as "total de contas sem compras há +90d"
@@ -77,8 +48,7 @@ clientes_90d as (
     from t_cliente c
     join t_venda v on c.id_cliente = v.id_cliente
     cross join parametros p
-    where c.fl_status_conta = 'A'
-    and v.dt_venda between (p.data_referencia - interval '90 days') and p.data_referencia
+    where v.dt_venda between (p.data_referencia - interval '90 days') and p.data_referencia
 )
 select count() as "total de contas sem compras há +90d"
 from clientes_90d;
@@ -89,12 +59,42 @@ from (
            max(v.dt_venda) as ultima_venda
     from t_cliente c
     join t_venda v on c.id_cliente = v.id_cliente
-    where c.fl_status_conta = 'A'
     group by c.id_cliente
 ) sub
 where sub.ultima_venda <= (
     (select max(dt_venda) from t_venda) - interval '90 days'
 );
+
+--Tentativa 2:
+select
+	id_cliente
+from
+	t_cliente
+where id_cliente
+	not in (
+	select
+		c.id_cliente
+--		max(v.dt_venda)
+	from
+		t_venda v,
+		t_cliente c
+	where
+		v.id_cliente = c.id_cliente
+		and v.dt_venda >= (select max(dt_venda) - interval '90 day' from t_venda)
+--group by c.id_cliente
+);
+
+--Tentativa 3:
+select count(distinct c.id_cliente) as "total de contas sem compras há +90d"
+from t_cliente c
+where id_cliente not in (
+	select distinct id_cliente
+	from t_venda
+	where dt_venda >= (
+		select max(dt_venda) 
+		from t_venda
+	) - interval '90 day'
+); 
 
 ```
 
