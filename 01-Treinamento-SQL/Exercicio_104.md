@@ -2,7 +2,7 @@
 
 ## 📝 Pergunta
 
-Identifique quantas contas não fizeram compras há mais de 90 dias. Considere a maior data de venda existente na base como referência e contas que têm `fl_status_conta = 'A'`.
+Identifique quantas contas não fizeram compras há mais de 90 dias. Considere a maior data de venda existente na base como referência.
 
 ## 🎯 Objetivo
 
@@ -105,6 +105,5 @@ where sub.ultima_venda <= (
 - [ ] Query executa sem erros
 - [ ] Usa maior data da base como referência
 - [ ] Calcula diferença de 90 dias corretamente
-- [ ] Considera apenas contas ativas
 - [ ] Identifica última compra por cliente
 

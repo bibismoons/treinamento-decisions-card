@@ -4,7 +4,7 @@
 
 Calcule o percentual de contas que não fazem compras há mais de 90 dias sobre o total de contas cadastradas. Use a maior data de venda da base como referência.
 
-Mostre: `total_contas_cadastradas`, `contas_inativas_90_dias`, `percentual_inativas`.
+Mostre: `total_contas_cadastradas`, `contas_sem_compras_90_dias`, `percentual_contas_sem_compras_90_dias`.
 
 ## 🎯 Objetivo
 
@@ -34,7 +34,7 @@ Use `(SELECT MAX(dt_venda) FROM decisionscard.t_venda) - INTERVAL '90 days'` par
 
 - [ ] Query executa sem erros
 - [ ] Usa data máxima da base como referência
-- [ ] Identifica contas inativas corretamente
+- [ ] Identifica contas sem compras corretamente
 - [ ] Calcula percentual sobre total cadastrado
 - [ ] Apresenta os três valores solicitados
 
