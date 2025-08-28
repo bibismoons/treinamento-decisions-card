@@ -29,51 +29,36 @@ Este relatório ajuda a identificar problemas no funil de aprovação e monitora
 ## ✍️ Sua Resposta
 
 ```sql
---Tentativa 1:
-with total as (
+select 
+    td.vl_dominio as "Situação da conta",
+    td.cd_dominio as "Status da conta",
+    count(c.id_cliente) as "Quantidade de contas por situação",
+    round((count(c.id_cliente) * 100.0 / nullif(total.total_contas, 0)), 2) as Percentual
+from 
+    t_dominio td
+left join
+    t_cliente c on td.cd_dominio = c.fl_status_conta and td.nm_dominio = 'FL_STATUS_CONTA'
+cross join (
     select count(*) as total_contas
     from t_cliente
-),
-situacoes as (
-    select 'Ativa' as situacao, count(*) as quantidade
-    from t_cliente
-    where fl_status_conta = 'A'
-    
-    union all
-    
-    select 'Inativa' as situacao, count(*) as quantidade
-    from t_cliente
-    where fl_status_conta = 'I'
-    
-    union all
-    
-    select 'Pendente Análise' as situacao, count(*) as quantidade
-    from t_cliente
-    where fl_status_analise = 'P'
-    
-    union all
-    
-    select 'Rejeitada' as situacao, count(*) as quantidade
-    from t_cliente
-    where fl_status_analise = 'R'
-)
-select 
-    s.situacao,
-    s.quantidade,
-    round((s.quantidade::numeric / t.total_contas) * 100, 2) as percentual
-from situacoes s
-cross join total t
-order by s.quantidade desc;
-
+) as total
+where 
+    td.nm_dominio = 'FL_STATUS_CONTA'
+group by
+    td.vl_dominio,
+    td.cd_dominio,
+    total.total_contas 
+order by 
+    Percentual desc nulls last;
 ```
 
 ---
 
 ## 📋 Critérios de Avaliação
 
-- [ ] Query executa sem erros
-- [ ] Categoriza situações corretamente
-- [ ] Calcula quantidade por situação
-- [ ] Calcula percentual sobre total
-- [ ] Ordenação por quantidade decrescente
+- [x] Query executa sem erros
+- [x] Categoriza situações corretamente
+- [x] Calcula quantidade por situação
+- [x] Calcula percentual sobre total
+- [x] Ordenação por quantidade decrescente
 
