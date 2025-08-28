@@ -35,8 +35,10 @@ where
 	        t_venda
 	    where 
 	        dt_venda >= (
-		        select max(dt_venda) 
-		        from t_venda
+		        select 
+                    max(dt_venda) 
+		        from 
+                    t_venda
 	        ) - interval '90 day'
     ); 
     		  		
