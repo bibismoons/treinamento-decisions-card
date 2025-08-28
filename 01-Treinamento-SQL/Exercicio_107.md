@@ -39,8 +39,10 @@ from
 left join
     t_cliente c on td.cd_dominio = c.fl_status_conta and td.nm_dominio = 'FL_STATUS_CONTA'
 cross join (
-    select count(*) as total_contas
-    from t_cliente
+    select 
+        count(*) as total_contas
+    from 
+        t_cliente
 ) as total
 where 
     td.nm_dominio = 'FL_STATUS_CONTA'
