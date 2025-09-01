@@ -23,34 +23,7 @@ Use `(SELECT MAX(dt_venda) FROM decisionscard.t_venda) - INTERVAL '90 days'` par
 ## ✍️ Sua Resposta
 
 ```sql
---Tentativa 1:
-with parametros as (
-    select max(dt_venda) as data_referencia
-    from t_venda
-),
-ultima_compra as (
-    select 
-        v.id_cliente,
-        max(v.dt_venda) as dt_ultima_compra
-    from t_venda v
-    group by v.id_cliente
-),
-total_contas as (
-    select count(*) as total_cadastradas
-    from t_cliente
-),
-contas_sem_compras_90d as (
-    select count(*) as total_sem_compras
-    from ultima_compra uc
-    cross join parametros p
-    where uc.dt_ultima_compra <= p.data_referencia - interval '90 days'
-)
-select 
-    t.total_cadastradas as total_contas_cadastradas,
-    cs.total_sem_compras as contas_sem_compras_90_dias,
-    round((cs.total_sem_compras::numeric / t.total_cadastradas) * 100, 2) as percentual_contas_sem_compras_90_dias
-from total_contas t
-cross join contas_sem_compras_90d cs;
+
 
 ```
 
