@@ -25,24 +25,7 @@ Identificar quais origens comerciais geram mais clientes e qual a qualidade dess
 ## ✍️ Sua Resposta
 
 ```sql
---Tentativa 1:
-with total as (
-    select count(*) as total_contas
-    from t_cliente
-)
-select 
-    r.nm_fantasia,
-    count(distinct c.id_cliente) as quantidade_contas,
-    round((count(distinct c.id_cliente)::numeric / t.total_contas) * 100, 2) as percentual_total,
-    count(distinct case when c.fl_status_conta = 'A' then c.id_cliente end) as contas_ativas,
-    round((count(distinct case when c.fl_status_conta = 'A' then c.id_cliente end)::numeric / count(distinct c.id_cliente)) * 100, 2) as taxa_ativacao
-from t_cliente c
-join t_venda v on c.id_cliente = v.id_cliente
-join t_rede r on v.id_rede = r.id_rede
-cross join total t
-group by r.nm_fantasia, t.total_contas
-having count(distinct c.id_cliente) >= 10
-order by quantidade_contas desc;
+
 
 ```
 
