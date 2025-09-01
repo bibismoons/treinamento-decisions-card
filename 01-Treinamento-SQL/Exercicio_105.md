@@ -19,20 +19,19 @@ Alto percentual de bloqueios pode indicar problemas na política de crédito ou 
 ## ✍️ Sua Resposta
 
 ```sql
---Tentativa 1:
+
 with total_contas as (
     select count(*) as total
     from t_cliente
 ),
 contas_bloqueadas as (
-    select count(distinct b.id_cliente) as bloqueadas
+    select count(b.id_cliente) as bloqueadas
     from t_bloqueio_cliente b
     where b.fl_liberado = 'N'
 )
-select 
-    t.total as total_contas,
-    cb.bloqueadas as contas_bloqueadas,
-    round((cb.bloqueadas::numeric / t.total) * 100, 2) as percentual_bloqueadas
+select t.total as total_contas,
+       cb.bloqueadas as contas_bloqueadas,
+       round((cb.bloqueadas::numeric / t.total) * 100, 2) as percentual_bloqueadas
 from total_contas t
 cross join contas_bloqueadas cb;
 
@@ -42,9 +41,9 @@ cross join contas_bloqueadas cb;
 
 ## 📋 Critérios de Avaliação
 
-- [ ] Query executa sem erros
-- [ ] Conta total de contas corretamente
-- [ ] Identifica contas com bloqueio ativo
-- [ ] Calcula percentual corretamente
-- [ ] Apresenta os três valores solicitados
+- [x] Query executa sem erros
+- [x] Conta total de contas corretamente
+- [x] Identifica contas com bloqueio ativo
+- [x] Calcula percentual corretamente
+- [x] Apresenta os três valores solicitados
 
