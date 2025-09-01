@@ -29,29 +29,23 @@ Este relatório ajuda a identificar problemas no funil de aprovação e monitora
 ## ✍️ Sua Resposta
 
 ```sql
-select 
-    td.vl_dominio as "Situação da conta",
-    td.cd_dominio as "Status da conta",
-    count(c.id_cliente) as "Quantidade de contas por situação",
-    round((count(c.id_cliente) * 100.0 / nullif(total.total_contas, 0)), 2) as Percentual
-from 
-    t_dominio td
-left join
-    t_cliente c on td.cd_dominio = c.fl_status_conta and td.nm_dominio = 'FL_STATUS_CONTA'
+select td.vl_dominio as "Situação da conta",
+       td.cd_dominio as "Status da conta",
+       count(c.id_cliente) as "Quantidade de contas por situação",
+       round((count(c.id_cliente) * 100.0 / nullif(total.total_contas, 0)), 2) as Percentual
+from t_dominio td
+left join t_cliente c on td.cd_dominio = c.fl_status_conta 
+          and td.nm_dominio = 'FL_STATUS_CONTA'
 cross join (
-    select 
-        count(*) as total_contas
-    from 
-        t_cliente
+    select count(*) as total_contas
+    from t_cliente
 ) as total
-where 
-    td.nm_dominio = 'FL_STATUS_CONTA'
-group by
-    td.vl_dominio,
-    td.cd_dominio,
-    total.total_contas 
-order by 
-    Percentual desc nulls last;
+where td.nm_dominio = 'FL_STATUS_CONTA'
+group by td.vl_dominio,
+         td.cd_dominio,
+         total.total_contas 
+order by Percentual desc nulls last;
+
 ```
 
 ---
