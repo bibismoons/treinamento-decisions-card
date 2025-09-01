@@ -29,6 +29,7 @@ Este relatório ajuda a identificar problemas no funil de aprovação e monitora
 ## ✍️ Sua Resposta
 
 ```sql
+
 select td.vl_dominio as "Situação da conta",
        td.cd_dominio as "Status da conta",
        count(c.id_cliente) as "Quantidade de contas por situação",
