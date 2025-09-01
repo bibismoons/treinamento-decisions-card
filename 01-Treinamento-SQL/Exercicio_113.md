@@ -17,9 +17,10 @@ O total de cartões emitidos é um indicador operacional importante para logíst
 ## ✍️ Sua Resposta
 
 ```sql
---Tentativa 1:
-select count(id_cartao)
-from t_cartao;
+
+select count (id_cartao)
+from t_cartao
+where fl_status_cartao != 'T';
 
 ```
 
@@ -27,8 +28,8 @@ from t_cartao;
 
 ## 📋 Critérios de Avaliação
 
-- [ ] Query executa sem erros
-- [ ] Conta todos os cartões da tabela
-- [ ] Retorna apenas um número
-- [ ] Usa a tabela t_cartao corretamente
+- [x] Query executa sem erros
+- [x] Conta todos os cartões da tabela
+- [x] Retorna apenas um número
+- [x] Usa a tabela t_cartao corretamente
 
