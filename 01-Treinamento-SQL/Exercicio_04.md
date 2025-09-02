@@ -21,8 +21,14 @@ Para ordenar do maior para o menor, use ORDER BY campo DESC.
 ## ✍️ Sua Resposta
 
 ```sql
--- Escreva sua query aqui
 
+select id_venda,
+       id_cliente,
+       vl_venda,
+       dt_venda
+from t_venda
+order by vl_venda desc
+limit 5;
 
 ```
 
@@ -30,9 +36,9 @@ Para ordenar do maior para o menor, use ORDER BY campo DESC.
 
 ## 📋 Critérios de Avaliação
 
-- [ ] Query executa sem erros
-- [ ] Retorna exatamente 5 registros
-- [ ] Ordenação decrescente por valor
-- [ ] Campos corretos são exibidos
-- [ ] Mostra as vendas de maior valor
+- [x] Query executa sem erros
+- [x] Retorna exatamente 5 registros
+- [x] Ordenação decrescente por valor
+- [x] Campos corretos são exibidos
+- [x] Mostra as vendas de maior valor
 
