@@ -18,12 +18,9 @@ Contas ativas representam o potencial de receita da empresa. É um indicador imp
 
 ```sql
 
-select 
-    count(fl_status_conta) 
-from 
-    t_cliente
-where 
-    fl_status_conta = 'A'; 
+select count(fl_status_conta) 
+from t_cliente
+where fl_status_conta = 'A'; 
 
 ```
 
