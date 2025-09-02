@@ -23,23 +23,6 @@ Identificar os tipos de bloqueio mais frequentes ajuda a melhorar processos e re
 ## ✍️ Sua Resposta
 
 ```sql
---Tentativa 1 errada:
-select count(fl_status_cartao) as from t_cartao;
-
-select
-	count(bc.id_cartao),
-	tbc.ds_tipo_bloqueio_cartao
-from
-	t_bloqueio_cartao bc
-join t_tipo_bloqueio_cartao tbc 
-    on
-	bc.id_tipo_bloqueio_cartao = tbc.id_tipo_bloqueio_cartao
-where
-	dt_desbloqueio is null
-group by
-	tbc.ds_tipo_bloqueio_cartao;
-
-select round(0.4,2); 
 
 
 ```
