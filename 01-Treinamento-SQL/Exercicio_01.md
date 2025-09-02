@@ -35,9 +35,9 @@ limit 10;
 
 ## 📋 Critérios de Avaliação
 
-- [ ] Query executa sem erros
-- [ ] Retorna exatamente 10 registros
-- [ ] Campos corretos são exibidos
-- [ ] Ordenação está correta (mais antigo primeiro)
-- [ ] Usa o schema `decisionscard` corretamente
+- [x] Query executa sem erros
+- [x] Retorna exatamente 10 registros
+- [x] Campos corretos são exibidos
+- [x] Ordenação está correta (mais antigo primeiro)
+- [x] Usa o schema `decisionscard` corretamente
 
