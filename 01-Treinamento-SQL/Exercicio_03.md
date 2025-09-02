@@ -22,8 +22,10 @@ Use COUNT(*) ou COUNT(campo) para contar registros que atendem à condição.
 ## ✍️ Sua Resposta
 
 ```sql
--- Escreva sua query aqui
 
+select count(*)
+from t_cartao
+where fl_status_cartao = 'A';
 
 ```
 
@@ -31,8 +33,8 @@ Use COUNT(*) ou COUNT(campo) para contar registros que atendem à condição.
 
 ## 📋 Critérios de Avaliação
 
-- [ ] Query executa sem erros
-- [ ] Retorna apenas um número (contagem)
-- [ ] Filtra corretamente por status 'A'
-- [ ] Usa função COUNT() adequadamente
+- [x] Query executa sem erros
+- [x] Retorna apenas um número (contagem)
+- [x] Filtra corretamente por status 'A'
+- [x] Usa função COUNT() adequadamente
 
