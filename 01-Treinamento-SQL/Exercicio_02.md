@@ -20,8 +20,14 @@ O campo `cd_uf` contém a sigla do estado (ex: 'SP', 'RJ', 'MG').
 ## ✍️ Sua Resposta
 
 ```sql
--- Escreva sua query aqui
 
+select id_rede,
+       nm_fantasia,
+       nm_cidade,
+       cd_uf
+from t_rede
+where cd_uf = 'SP'
+order by nm_fantasia asc;
 
 ```
 
@@ -29,9 +35,9 @@ O campo `cd_uf` contém a sigla do estado (ex: 'SP', 'RJ', 'MG').
 
 ## 📋 Critérios de Avaliação
 
-- [ ] Query executa sem erros
-- [ ] Filtra apenas redes do estado 'SP'
-- [ ] Campos corretos são exibidos
-- [ ] Ordenação alfabética por nome fantasia
-- [ ] Usa WHERE corretamente
+- [x] Query executa sem erros
+- [x] Filtra apenas redes do estado 'SP'
+- [x] Campos corretos são exibidos
+- [x] Ordenação alfabética por nome fantasia
+- [x] Usa WHERE corretamente
 
